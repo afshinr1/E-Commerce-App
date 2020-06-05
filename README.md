@@ -1,1 +1,1 @@
-# Shoprite
+#E commerce app
