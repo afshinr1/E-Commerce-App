@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
 }
+.container, body, #root, html{
+  width: 100%;
+  height: 100%;
+}
 
 .navbar {
   position: relative;
@@ -51,4 +55,89 @@
 
 .nav-link {
   text-decoration: none;
+}
+
+
+
+body, html, #root, .app, .container {
+  width: 100%;
+  height: 100%;
+}
+
+
+.container {
+  font-size: 28px;
+  color: #fff;
+  display: flex;
+  background-color: #282c34;
+  background-image: url('/public/logo.png');
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  padding-left: 20px;
+  padding-right: 20px;
+ }
+
+.login input{
+  height: 1.3rem;
+}
+.login h1{
+  text-transform: uppercase;
+}
+.login button{
+  font-size: 1rem;
+  padding: 10px;
+  color: darkgreen;
+  text-transform: uppercase;
+  font-weight: 900;
+  cursor: pointer;
+}
+.login-input {
+  margin: 1rem;
+  box-sizing: border-box;
+  outline: none;
+  border: solid 2px #1189de;
+  border-radius: 4px;
+  color: #292929;
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 1);
+}
+
+.login-input:focus {
+  background-color: aquamarine;
+}
+
+.login-btn{
+  width: 100%;
+ min-width: 280px;
+ color: #565656;
+ padding: 12px;
+ font-size: 14px;
+ margin-bottom: 2rem;
+ font-weight: bold;
+ border: solid 2px #1189de;
+ border-radius: 4px;
+ background: #fff;
+ cursor: pointer;
+ transition: background-color 650ms;
+}
+
+.login-btn:hover{
+  color: blue;
+  background-color: teal;
+}
+.login-link{
+  font-size: 1rem;
+  color: aqua;
 }
