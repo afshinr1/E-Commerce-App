@@ -12,7 +12,8 @@ const validate = (username, password) => {
             password: results[0].password,
             role: results[0].role,
             firstName: results[0].firstname,
-            lastName: results[0].lastname
+            lastName: results[0].lastname,
+            profile_img: results[0].profileimg
           },
         });
       } else {

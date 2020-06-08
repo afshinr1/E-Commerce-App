@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 const PORT = 5000 || process.env.PORT;
 app.use(cors());
 
+
 app.use('/', require('./routes'));
 
 

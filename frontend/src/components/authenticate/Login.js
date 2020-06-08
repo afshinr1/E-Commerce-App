@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from 'universal-cookie';
+
 export class Login extends Component {
   constructor() {
     super();
     this.state = { username: "", password: "", error: "" };
   }
 
+  
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -14,6 +17,8 @@ export class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    const cookies = new Cookies();
+
     if (!this.state.username || !this.state.password) {
       this.setState({ error: "Please fill out all fields" });
       return;
@@ -29,8 +34,15 @@ export class Login extends Component {
           if (data === null) {
             this.setState({ error: "Username or password is incorrect" });
           } else {
+            cookies.set('username', data.username, { path: '/' });
+            cookies.set('name', data.firstName + " " + data.lastName, { path: '/' });
+            cookies.set('email', data.email, { path: '/' });
+            cookies.set('role', data.role, { path: '/' });
+            cookies.set('profileimg', data.profile_img, { path: '/' });
+
+            console.log(data.username);
             this.props.handleLogin(data);
-            this.props.history.push("/");
+            this.props.history.push("/app/profile");
           }
         });
     }
