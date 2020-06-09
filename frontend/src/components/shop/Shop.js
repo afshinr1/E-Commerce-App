@@ -9,12 +9,12 @@ export class Shop extends Component {
 
   getItems = async () => {
     let response = await axios.get(`http://localhost:5000/api/shop`);
-    console.log(response.data);
     this.setState({ itemList: response.data });
   };
 
   componentDidMount() {
     this.getItems();
+
   }
 
   render() {

@@ -9,7 +9,7 @@ import Login from "./components/authenticate/Login";
 import Purchased from "./components/shop/Purchased";
 import Cookies from "universal-cookie";
 import Register from "./components/authenticate/Register";
-import Item from './components/shop/Item';
+import Item from './components/shop/item/Item';
 export class App extends Component {
   constructor() {
     super();
