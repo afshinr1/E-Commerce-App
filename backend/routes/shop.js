@@ -27,7 +27,6 @@ router.get("/", async (req, res, next) => {
     let params = queryObject.path.split("/");
     let id = params[1];
     let results = await shop.getComments(id);
-    console.log(results);
     res.json(results);
   });
   

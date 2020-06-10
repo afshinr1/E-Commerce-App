@@ -31,6 +31,11 @@ constructor(){
       cost,
     } = this.props;
 
+    let label;
+    if(stock !== '0'){
+      label= <button onClick={this.addToCart.bind(this, productId)}>Add to Cart</button>
+    }
+    else label = <label style={{color: 'red', fontSize:'1.2rem', fontWeight:'900'}}>OUT OF STOCK</label>
     return (
       <div className="the-item">
         <img src={window.location.origin + `/item_imgs/${item_img}`} alt=" " />
@@ -40,9 +45,9 @@ constructor(){
           <h5>by {manufacturer}</h5>
           <span>Price: ${cost}</span>
           <h3>Description: {description}</h3>
-          <h3>Stock : {stock}</h3>
+          <h3 style={{color: stock==='0' && 'red'}}>Stock : {stock}</h3>
         </div>
-        <button onClick={this.addToCart.bind(this, productId)}>Add to Cart</button>
+        {label}
       </div>
     );
   }

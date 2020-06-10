@@ -25,6 +25,16 @@ const getCart = (username) => {
         });
       });
 };
+const deleteItem = (id, username) =>{
+  return new Promise((resolve, reject)=>{
+    let query = "DELETE FROM cart WHERE username=? AND productId=?";
+    connection.query(query,[username, id], (erorr, results, field)=>{
+        resolve('successful');
+    } );
+  });
+}
 
+
+module.exports.deleteItem = deleteItem;
 module.exports.addToCart = addToCart;
 module.exports.getCart = getCart;

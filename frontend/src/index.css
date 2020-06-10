@@ -241,7 +241,7 @@ html,
 
 
 
-.cart-item button {
+.checkout-button {
   cursor: pointer;
   font-size: 0.8rem;
   padding: 10px;
@@ -252,7 +252,7 @@ html,
 
 }
 
-.cart-item button:hover{
+.checkout-button:hover{
   background: pink;
   color: blue;
 }
@@ -262,6 +262,7 @@ html,
   text-align: center;
   width: 50%;
   flex-wrap: wrap;
+  margin: 10px;
 }
 
 .the-item-info h1{
@@ -299,9 +300,18 @@ background-color: lightgrey;
   border: 1px solid black;
 }
 .item-comment span{
+  
   font-size: 2rem;
   font-weight: 700;
 }
+
+.item-comment img{
+  border: 1px solid black;
+  border-radius: 100px;
+width: 40px;
+height: 40px;
+}
+
 .item-comment p{
   font-size: 1.1rem;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -362,3 +372,16 @@ margin: 30px;
   height: 150px;
   width: 150px;
 }
+
+.fa-trash{
+font-size: 1.5rem;
+color: red;
+}
+
+.icon-button{
+  background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+  }
