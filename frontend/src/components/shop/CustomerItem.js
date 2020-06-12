@@ -9,19 +9,20 @@ export class CustomerItem extends Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+    this.props.changeSubtotal(value);
   };
 
   render() {
     const {
       productId,
       name,
-      stock,
       description,
       item_img,
       manufacturer,
       quantity,
       cost,
       type,
+      username,
       //  message,
     } = this.props;
     let toShow = description.substring(0, 20) + "...";
@@ -72,6 +73,10 @@ export class CustomerItem extends Component {
         </div>
       );
     } else {
+      let boughtBy;
+      if(username)
+      boughtBy = React.createElement('h3', {}, `by ${username}`);
+      console.log(username);
       return (
         <div className="cart-item">
           <Link to={`/app/shop/${productId}`}>
@@ -87,14 +92,18 @@ export class CustomerItem extends Component {
             <h3>Description: {toShow}</h3>
             <h4>Quantity : {quantity}</h4>
           </div>
+          <div>
           <h2>
-            Purchased{" "}
+            Purchased 
             <i
               style={{ color: "green" }}
               className="fa fa-check"
               aria-hidden="true"
             ></i>
           </h2>
+          {boughtBy}
+          </div>
+        
         </div>
       );
     }

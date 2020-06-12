@@ -5,7 +5,7 @@ import CustomerItem from "./CustomerItem";
 export class Cart extends Component {
   constructor() {
     super();
-    this.state = { items: [], message: "" };
+    this.state = { items: [], message: "" , subtotal: 0};
   }
 
   checkout = async (id, quantity) => {
@@ -15,7 +15,6 @@ export class Cart extends Component {
     let message = await axios.post(
       `http://localhost:5000/api/cart/purchase?id=${id}&username=${username}&quantity=${quantity}`
     );
-    console.log((message));
     if(message.data.includes('Not enough')){
       this.setState({message : "Not enough stock for purchase"});
     }
@@ -27,12 +26,14 @@ export class Cart extends Component {
     }
   
   };
-
+  changeSubtotal = (value) => {
+    console.log(value);
+  }
   removeCart = async (id) =>{
   let cookies = new Cookies();
     let username = cookies.get("username");
  
-    let message = await axios.delete(
+     await axios.delete(
       `http://localhost:5000/api/cart/delete?id=${id}&username=${username}`
     );
     this.setState({
@@ -57,12 +58,14 @@ export class Cart extends Component {
     this.getCartItems();
   }
 
+
   render() {
     let newPrice = 0;
     const listItems = this.state.items.map((item) => {
       newPrice += parseFloat(item.cost);
       return (
         <CustomerItem
+        changeSubtotal = {this.changeSubtotal}
           key={item.idcart}
           item_img={item.item_img}
           name={item.name}
@@ -75,17 +78,20 @@ export class Cart extends Component {
           removeCart = {this.removeCart}
           checkout={this.checkout}
           message={this.state.message}
+        
         />
       );
     });
     let subtotal;
-    if (this.state.items.length > 0)
+    if (this.state.items.length > 0){
       subtotal = React.createElement("h3", {}, `Subtotal : $${newPrice}`);
+    }
     return (
       <div className="cart-page">
         <h2 style={{ color: this.state.message.includes('Success') ? 'green' : 'red' }}>{this.state.message}</h2>
         {listItems}
         {subtotal}
+   
       </div>
     );
   }

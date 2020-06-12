@@ -14,7 +14,6 @@ export class Shop extends Component {
 
   componentDidMount() {
     this.getItems();
-
   }
 
   render() {

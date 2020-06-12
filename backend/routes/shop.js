@@ -11,6 +11,16 @@ router.get("/", async (req, res, next) => {
     res.json(results);
   });
   
+  router.get("/getMyItems", async (req, res, next) => {
+    console.log("get my items jaja");
+    let  obj = url.parse(req.url,true).query;
+    let { username } = obj;
+    console.log(username)
+    let results = await shop.getMyItems(username);
+    console.log(results);
+    res.json(results);
+  });
+  
   router.get("/:id", async (req, res, next) => {
     console.log("in get individual item");
     const queryObject = url.parse(req.url, true);
@@ -40,6 +50,17 @@ router.get("/", async (req, res, next) => {
     res.json(results);
   });
   
+  router.put('/addStock', async(req,res,next)=>{
+    console.log('in add stock');
+    let { id, stock } = req.body;
+    let results = await item.addStock(id, stock);
+    res.status(200).json("Success");
+
+    console.log(id + stock);
+    
+  });
+
+
   router.put("/:id/review", async (req, res, next) => {
     let theItem = req.body.item;
     await item.updateItemReview(theItem);

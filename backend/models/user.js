@@ -13,7 +13,7 @@ const validate = (username, password) => {
             role: results[0].role,
             firstName: results[0].firstname,
             lastName: results[0].lastname,
-            profile_img: results[0].profileimg
+            profile_img: results[0].profileimg,
           },
         });
       } else {
@@ -48,5 +48,20 @@ const register = (firstName, lastName, username, password, email, role) => {
   });
 };
 
+const changeProfile = (username, imageName) => {
+  console.log("in change username " + username + imageName);
+  return new Promise((resolve, reject) => {
+    let query = "UPDATE users SET profileimg=? WHERE username=?";
+    connection.query(query, [imageName, username], (error, results, field) => {
+      if(!error)
+      resolve("Success");
+      else{
+        reject('Error in changing profile db');
+      }
+    });
+  });
+};
+
+module.exports.changeProfile = changeProfile;
 module.exports.validate = validate;
 module.exports.register = register;

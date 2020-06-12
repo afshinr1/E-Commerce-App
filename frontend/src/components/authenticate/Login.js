@@ -51,6 +51,7 @@ export class Login extends Component {
   render() {
     return (
       <div className="container">
+        <div className='container-background'><img src='/logo.png' alt=''></img></div>
         <form className="loginForm">
           <h2>Sign In</h2>
           <label style={{ color: "red" }}>{this.state.error}</label>

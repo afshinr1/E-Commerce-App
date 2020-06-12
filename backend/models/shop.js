@@ -36,6 +36,40 @@ const getPurchases = (username)=>{
   });
 }
 
+const addItem = (username,name, stock, cost, manufacturer, fileName, description) =>{
+  return new Promise((resolve, reject) => {
+    let query = "INSERT INTO product (name, stock, description, rating, cost, manufacturer, countReview, item_img, musername) VALUES (?,?,?,?,?,?,?,?,?)";
+    connection.query(query, [name, stock, description, 0, cost, manufacturer, 0, fileName, username], (error, results, field) => {
+      if(error){
+        resolve('error in adding item');
+      }
+      else
+      resolve('success in adding item');
+    });
+  });
+}
+
+const getMyItems = (username) =>{
+  return new Promise((resolve, reject) => {
+    console.log(username + 'jaja');
+    let query = "SELECT * FROM product WHERE musername=?";
+    connection.query(query, [username], (error, results, field) => {
+      resolve(results);
+    });
+  });
+}
+const getCustomers = (username) => {
+  return new Promise((resolve, reject) => {
+    let query = "SELECT * FROM purchases as p, product as c WHERE p.productId=c.productId AND c.musername=?";
+    connection.query(query, [username], (error, results, field)=>{
+      resolve(results);
+    });
+  });
+}
+
+module.exports.getCustomers = getCustomers;
+module.exports.getMyItems = getMyItems;
+module.exports.addItem = addItem;
 module.exports.getPurchases = getPurchases;
 module.exports.getComments = getComments;
 module.exports.getItem = getItem;

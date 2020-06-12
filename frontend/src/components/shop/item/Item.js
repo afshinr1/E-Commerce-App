@@ -9,14 +9,30 @@ import Comment from "./Comment";
 export class Item extends Component {
   constructor() {
     super();
-    this.state = { item: {}, comments: [] };
+    this.state = { item: {}, comments: [], stock: ''};
   }
   getItem = () => {
     let id = this.props.match.params.id;
     axios.get(`http://localhost:5000/api/shop/${id}`).then((response) => {
       this.setState({ item: response.data[0] });
+      this.setState({stock : response.data[0].stock});
     });
   };
+
+
+  changeStock = async (id, stock)=>{
+
+    await axios.put("http://localhost:5000/api/shop/addStock", {
+      id : id,
+      stock: stock,
+     
+    });
+    this.setState({stock: stock});
+}
+
+
+
+
 
   addComment = async (text, rating) => {
     const cookies = new Cookies();
@@ -37,6 +53,7 @@ export class Item extends Component {
     newItem.countReview = parseInt(newItem.countReview) + 1;
     this.setState({ comments: [...this.state.comments, newComment] });
     this.setState({ item: newItem });
+    this.setState({stock: newItem.stock});
     this.updateRatings(id);
   };
 
@@ -62,7 +79,6 @@ export class Item extends Component {
     const {
       productId,
       name,
-      stock,
       description,
       item_img,
       manufacturer,
@@ -78,11 +94,13 @@ export class Item extends Component {
         <ItemInfo
           item_img={item_img}
           name={name}
-          stock={stock}
+          stock={this.state.stock}
           cost={cost}
           description={description}
           manufacturer={manufacturer}
           productId={productId}
+          changeStock={this.changeStock}
+
         />
         <Review rating={rating} countReview={countReview} />
         {comments}

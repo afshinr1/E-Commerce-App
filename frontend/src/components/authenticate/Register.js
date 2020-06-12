@@ -59,6 +59,8 @@ export class Register extends Component {
 
     return (
       <div className="container">
+                <div className='container-background'><img src='/logo.png' alt=''></img></div>
+
         <form className="loginForm">
           <h2>Register</h2>
           <label style={this.state.error.includes('Success') ? {color: 'green'} : {color: 'red'}}>{this.state.error}</label>

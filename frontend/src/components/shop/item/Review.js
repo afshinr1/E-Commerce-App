@@ -7,9 +7,7 @@ export default function Review(props) {
   for (let i = 0; i < ratingNum; i++) {
     ja = i + 100;
     span.push(
-      React.createElement(
-        "span",
-        { key: ja, className: "fa fa-star checked" } )
+      React.createElement("span", { key: ja, className: "fa fa-star checked" })
     );
   }
   for (let i = ratingNum; i < 10; i++) {

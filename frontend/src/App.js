@@ -10,6 +10,10 @@ import Purchased from "./components/shop/Purchased";
 import Cookies from "universal-cookie";
 import Register from "./components/authenticate/Register";
 import Item from './components/shop/item/Item';
+import MyItems from './components/business/MyItems'
+import Customers from './components/business/Customers'
+import AddItem from './components/business/AddItem'
+
 export class App extends Component {
   constructor() {
     super();
@@ -66,6 +70,10 @@ export class App extends Component {
             <Route path="/app/shop/:id" component={Item} />
             <Route path="/app/cart" component={Cart} />
             <Route path="/app/purchased" component={Purchased} />
+            <Route path='/app/myitems' exact component={MyItems}/>
+            <Route path='/app/additem' exact component={AddItem}/>
+            <Route path='/app/customers' component={Customers}/>
+
           </Switch>
         </React.Fragment>
       </Router>

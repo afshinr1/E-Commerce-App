@@ -25,9 +25,17 @@ const updateItemReview = (item) =>{
 
 }
 
+const addStock = (id, stock) =>{
+    return new Promise((resolve, reject) =>{
+
+        let query = "UPDATE product SET stock=? WHERE productId=?";
+        connection.query(query, [stock, id], (error, results, field)=>{
+            resolve("Success");
+    });
+});
+}
 
 
-
-
+module.exports.addStock = addStock;
 module.exports.updateItemReview = updateItemReview;
 module.exports.addComment = addComment;

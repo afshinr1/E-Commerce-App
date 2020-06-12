@@ -71,15 +71,25 @@ html,
 }
 
 .container {
+  position: relative;
   font-size: 28px;
   color: #fff;
   display: flex;
-  background-color: #282c34;
-  background-image: url("/public/logo.png");
   flex-direction: column;
+  background-color: grey;
+  z-index: 1;
   align-items: center;
   justify-content: center;
 }
+
+.container-background{
+ position: absolute;
+ opacity: 0.4;
+ background-position: center;
+ background-size: cover;
+ z-index: -1;
+}
+
 .loginForm {
   display: flex;
   flex-direction: column;
@@ -179,12 +189,16 @@ html,
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 90%;
 }
 
 .item {
   border: 1px solid black;
   text-align: center;
   padding: 5px;
+  margin: 10px;
 }
 
 .item h1 {
@@ -208,9 +222,10 @@ html,
 }
 
 .item-page img {
-  height: 300px;
-  width: 300px;
-  border-right: 2px dashed black;
+  height: 250px;
+  width: 250px;
+  margin: 5px;
+  border-radius: 50px;
 }
 
 .the-item {
@@ -384,4 +399,113 @@ color: red;
     border: none;
     cursor:pointer;
     overflow: hidden;
+  }
+
+  .upload{
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    justify-content:center;
+    margin: 0 auto;
+    align-content: center;
+    align-items: center;
+  }
+  .upload img{
+
+  }
+
+  .upload-form{
+    position: relative;
+    left: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+    
+  }
+  .upload-form input{
+    font-size: 1rem;
+    margin: 10px;
+    
+  }
+
+  .upload-form button{
+    text-transform: capitalize;
+    font-weight: 900;
+    cursor: pointer;
+    width: 40%;
+    color: white;
+    background-color: black;
+    transition: all 650ms;
+  }
+
+  .upload-form button:hover{
+    color: red;
+    background-color:aquamarine;
+
+  }
+  .add-item{
+    text-align: center;
+  }
+
+  .add-item-form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  .add-item-form input{
+    align-self: center;
+    width: 40%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 50px;
+    outline: none;
+
+  }
+  .add-item-form textarea{
+    width: 70%;
+    margin: 0 auto;
+    height: 100px;
+  }
+  .add-item-form input:focus{
+    background-color: aquamarine;
+  }
+  .add-item-form label{
+    margin-top: 10px;
+    align-self: center;
+  }
+
+  .add-item-form button{
+    align-self: center;
+    width: 40%;
+    cursor: pointer;
+    background-color: lightskyblue;
+    color: black;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-transform: capitalize;
+    border: 2px solid black;
+    transition: all 540ms;
+  }
+
+  .add-item-form button:hover{
+    background-color: #00ff;
+    color: yellowgreen;
+  }
+
+  .modal{
+    width: 20%;
+  
+    margin: 0 auto;
+  }
+  .modal-form{
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-form button{
+    font-size: 1.3rem;
+    margin: 20px;
   }
