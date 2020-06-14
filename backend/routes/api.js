@@ -24,4 +24,12 @@ router.get('/getCustomers', async (req,res, next)=>{
   
 });
 
+router.get('/search', async (req,res,next) =>{
+  let obj = url.parse(req.url, true);
+  let searchVal = obj.query.value;
+  let response =  await shop.search(searchVal);
+  console.log(response);
+  res.json(response);
+});
+
 module.exports = router;

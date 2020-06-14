@@ -3,7 +3,7 @@ import "./App.css";
 import {BrowserRouter as Router, Route,Switch,Redirect,} from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Profile from "./components/layout/Profile";
-import Shop from "./Shop";
+import Shop from "./components/shop/Shop";
 import Cart from "./components/shop/Cart";
 import Login from "./components/authenticate/Login";
 import Purchased from "./components/shop/Purchased";

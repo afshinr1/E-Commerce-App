@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import Modal from 'react-modal'
+import Modal from "react-modal";
 export class ItemInfo extends Component {
   constructor() {
     super();
-    this.state = { message: "", modalIsOpen : false, stock: '' };
+    this.state = { message: "", modalIsOpen: false, stock: "" };
   }
 
   addToCart = async (id) => {
@@ -20,18 +20,17 @@ export class ItemInfo extends Component {
     this.setState({ message: result.data });
   };
 
-  changeStock = async (e)=>{
-      e.preventDefault();
-      let stock = this.state.stock;
-      if(isNaN(stock) || stock===''){
-        alert('Enter valid number');
-        return;
-      }
-      let id = this.props.productId;
-      this.props.changeStock(id, stock);
-      this.setState({message: "Stock Changed Successfully"});
-  }
-
+  changeStock = async (e) => {
+    e.preventDefault();
+    let stock = this.state.stock;
+    if (isNaN(stock) || stock === "") {
+      alert("Enter valid number");
+      return;
+    }
+    let id = this.props.productId;
+    this.props.changeStock(id, stock);
+    this.setState({ message: "Stock Changed Successfully" });
+  };
 
   render() {
     const {
@@ -43,26 +42,31 @@ export class ItemInfo extends Component {
       manufacturer,
       cost,
     } = this.props;
-    let role =new Cookies().get('role');
+    let role = new Cookies().get("role");
     let label;
     console.log(role);
-    if(role === 'manager'){
+    if (role === "manager") {
       label = (
         <div>
-          <form onSubmit={this.changeStock} style={{display:'flex', margin: '5px', height:'40px'}}>
-            <input type='text' value={this.state.stock} onChange={(e)=> this.setState({stock : e.target.value})} placeholder='Stock available'></input>
+          <form
+            onSubmit={this.changeStock}
+            style={{ display: "flex", margin: "5px", height: "40px" }}
+          >
+            <input
+              type="text"
+              value={this.state.stock}
+              onChange={(e) => this.setState({ stock: e.target.value })}
+              placeholder="Stock available"
+            ></input>
             <button>Change</button>
           </form>
-    
-       </div>
+        </div>
       );
-    }
-   else if (stock !== "0") {
+    } else if (stock !== "0") {
       label = (
         <button onClick={this.addToCart.bind(this, productId)}>
           Add to Cart
         </button>
-        
       );
     } else
       label = (

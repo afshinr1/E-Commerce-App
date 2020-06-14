@@ -18,7 +18,7 @@ export class MyItems extends Component {
     componentDidMount(){
         this.getMyItems();
     }
-
+    
     render() {
         const items = this.state.items.map(item => {
             return <Item key={item.productId} item={item}/>

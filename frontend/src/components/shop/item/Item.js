@@ -9,13 +9,15 @@ import Comment from "./Comment";
 export class Item extends Component {
   constructor() {
     super();
-    this.state = { item: {}, comments: [], stock: ''};
+    this.state = { item: {}, comments: [], stock: '', ratings: []};
   }
   getItem = () => {
     let id = this.props.match.params.id;
     axios.get(`http://localhost:5000/api/shop/${id}`).then((response) => {
       this.setState({ item: response.data[0] });
       this.setState({stock : response.data[0].stock});
+      this.setState({ratings : response.data.map(indItem => indItem.rating)});
+      console.log(this.state.ratings);
     });
   };
 
@@ -83,9 +85,15 @@ export class Item extends Component {
       item_img,
       manufacturer,
       cost,
-      rating,
       countReview,
     } = this.state.item;
+    let rating = 0;
+    this.state.ratings.forEach((rate, index) => {
+      console.log(index);
+      rating +=parseInt(rate);
+    });
+    rating = rating / countReview;
+    console.log(rating);
     const comments = this.state.comments.map((comment) => {
       return <Comment key={comment.commentid} comment={comment} />;
     });

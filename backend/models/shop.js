@@ -12,12 +12,13 @@ const getItems = () => {
 
 const getItem = (id) => {
   return new Promise((resolve, reject) => {
-    let query = "SELECT * FROM product WHERE productId=?";
+    let query = "SELECT * FROM product as p, comments as c WHERE p.productId=? AND c.idproduct=p.productId";
     connection.query(query, [id], (error, results, field) => {
       resolve(results);
     });
   });
 };
+
 const getComments = (id) => {
   return new Promise((resolve, reject) => {
     let query = "SELECT DISTINCT * FROM comments as c, users as u WHERE idproduct=? AND c.username=u.username";
@@ -67,6 +68,22 @@ const getCustomers = (username) => {
   });
 }
 
+const search = (value) =>{
+  return new Promise((resolve, reject) => {
+    let query = "SELECT * FROM product";
+    connection.query(query, [], (error, results, field) => {
+      let newResults = results.filter(result =>{
+        let name = result.name.toLowerCase();
+        value = value.toLowerCase();
+        if(name.includes(value))
+           return result;
+      });
+      resolve(newResults)
+    });
+  });
+}
+
+module.exports.search = search;
 module.exports.getCustomers = getCustomers;
 module.exports.getMyItems = getMyItems;
 module.exports.addItem = addItem;

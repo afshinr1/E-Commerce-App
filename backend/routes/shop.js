@@ -17,7 +17,6 @@ router.get("/", async (req, res, next) => {
     let { username } = obj;
     console.log(username)
     let results = await shop.getMyItems(username);
-    console.log(results);
     res.json(results);
   });
   
@@ -46,7 +45,9 @@ router.get("/", async (req, res, next) => {
     const queryObject = url.parse(req.url, true);
     let params = queryObject.path.split("/");
     let id = params[1];
+ //   await item.updateRating(id, rating);
     let results = await item.addComment(id, username, text, rating);
+    
     res.json(results);
   });
   
@@ -67,5 +68,5 @@ router.get("/", async (req, res, next) => {
   });
   
 
-
+ 
 module.exports = router;
