@@ -1,5 +1,5 @@
 import React from "react";
-
+import propsType from "prop-types";
 export default function Review(props) {
   let ratingNum = Math.floor(props.rating);
   let span = [];
@@ -16,6 +16,11 @@ export default function Review(props) {
       React.createElement("span", { key: ja, className: "fa fa-star" })
     );
   }
+
+  Review.propsType = {
+    countReview: propsType.string,
+    rating: propsType.string,
+  };
 
   return (
     <div className="ratings">

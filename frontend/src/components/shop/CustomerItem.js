@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import propsType from 'prop-types'
 export class CustomerItem extends Component {
   constructor() {
     super();
@@ -108,6 +109,19 @@ export class CustomerItem extends Component {
       );
     }
   }
+}
+
+CustomerItem.propsType = {
+  productId : propsType.string, 
+  name : propsType.string, 
+  description : propsType.string, 
+  item_img: propsType.string, 
+  manufacturer : propsType.string, 
+  quantity : propsType.string, 
+  cost : propsType.string, 
+  type : propsType.string, 
+  username : propsType.string, 
+  checkout : propsType.func.isRequired
 }
 
 export default CustomerItem;

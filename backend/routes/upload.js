@@ -3,6 +3,7 @@ const router  = express.Router();
 const user = require('../models/user');
 const shop = require('../models/shop');
 const url = require('url');
+const User = require('../models/model.users');
 
 router.post('/',  (req,res,next)=>{
     if(req.files === null){
@@ -17,6 +18,7 @@ router.post('/',  (req,res,next)=>{
         return res.status(500).send(err);
       }
      let response = await user.changeProfile(username, file.name);
+     
       res.json({fileName: file.name, filePath : `/profile_imgs/${file.name}`});
     });
     

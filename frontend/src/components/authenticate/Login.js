@@ -31,6 +31,7 @@ export class Login extends Component {
         })
         .then((response) => {
           let data = response.data.user;
+          console.log(response);
           if (data === null) {
             this.setState({ error: "Username or password is incorrect" });
           } else {

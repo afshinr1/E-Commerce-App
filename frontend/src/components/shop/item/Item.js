@@ -9,32 +9,27 @@ import Comment from "./Comment";
 export class Item extends Component {
   constructor() {
     super();
-    this.state = { item: {}, comments: [], stock: '', ratings: []};
+    this.state = { item: {}, comments: [], stock: "", ratings: [] };
   }
   getItem = () => {
     let id = this.props.match.params.id;
     axios.get(`http://localhost:5000/api/shop/${id}`).then((response) => {
       this.setState({ item: response.data[0] });
-      this.setState({stock : response.data[0].stock});
-      this.setState({ratings : response.data.map(indItem => indItem.rating)});
+      this.setState({ stock: response.data[0].stock });
+      this.setState({
+        ratings: response.data.map((indItem) => indItem.rating),
+      });
       console.log(this.state.ratings);
     });
   };
 
-
-  changeStock = async (id, stock)=>{
-
+  changeStock = async (id, stock) => {
     await axios.put("http://localhost:5000/api/shop/addStock", {
-      id : id,
+      id: id,
       stock: stock,
-     
     });
-    this.setState({stock: stock});
-}
-
-
-
-
+    this.setState({ stock: stock });
+  };
 
   addComment = async (text, rating) => {
     const cookies = new Cookies();
@@ -55,7 +50,7 @@ export class Item extends Component {
     newItem.countReview = parseInt(newItem.countReview) + 1;
     this.setState({ comments: [...this.state.comments, newComment] });
     this.setState({ item: newItem });
-    this.setState({stock: newItem.stock});
+    this.setState({ stock: newItem.stock });
     this.updateRatings(id);
   };
 
@@ -90,7 +85,7 @@ export class Item extends Component {
     let rating = 0;
     this.state.ratings.forEach((rate, index) => {
       console.log(index);
-      rating +=parseInt(rate);
+      rating += parseInt(rate);
     });
     rating = rating / countReview;
     console.log(rating);
@@ -108,7 +103,6 @@ export class Item extends Component {
           manufacturer={manufacturer}
           productId={productId}
           changeStock={this.changeStock}
-
         />
         <Review rating={rating} countReview={countReview} />
         {comments}

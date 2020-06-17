@@ -27,6 +27,8 @@ export default function ProfilePicture(props) {
           },
         }
       );
+      console.log(res);
+
       const { fileName, filePath } = res.data;
       setUploadedFile({ fileName, filePath });
     } catch (err) {

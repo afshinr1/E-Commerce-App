@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import Modal from "react-modal";
+import propTypes from "prop-types";
+
 export class ItemInfo extends Component {
   constructor() {
     super();
@@ -101,4 +102,13 @@ export class ItemInfo extends Component {
   }
 }
 
+ItemInfo.propTypes = {
+  addToCart: propTypes.array,
+  name: propTypes.string,
+  stock: propTypes.any,
+  description: propTypes.string,
+  item_img: propTypes.string,
+  manufacturer: propTypes.string,
+  cost: propTypes.any,
+};
 export default ItemInfo;

@@ -1,4 +1,6 @@
 const connection = require("../connection");
+const user = require('./model.users');
+
 
 const validate = (username, password) => {
   return new Promise((resolve, reject) => {

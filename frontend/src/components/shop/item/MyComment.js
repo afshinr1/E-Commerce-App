@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import propsType from 'prop-types'
 
 export class MyComment extends Component {
   constructor() {
@@ -53,6 +54,10 @@ export class MyComment extends Component {
       </form>
     );
   }
+}
+
+MyComment.propsType = {
+  addComment : propsType.array.isRequired
 }
 
 export default MyComment;
